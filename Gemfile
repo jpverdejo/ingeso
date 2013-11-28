@@ -3,13 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
-group :production, :staging do
-  gem "pg"
-end
-
-group :development, :test do
-  gem "sqlite3-ruby", "~> 1.3.0", :require => "sqlite3"
-end
+gem "pg"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
