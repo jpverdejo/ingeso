@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  rut: MyString
+  nombre: MyString
+  carrera_id: 1
+  ingreso_ano: 1
+  ingreso_semestre: 1
+  grupo: MyString
+  seccion: MyString
+  foto: false
+
+two:
+  id: 
+  rut: MyString
+  nombre: MyString
+  carrera_id: 1
+  ingreso_ano: 1
+  ingreso_semestre: 1
+  grupo: MyString
+  seccion: MyString
+  foto: false
