@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
-gem "pg"
+#gem "pg"
+gem "sqlite3-ruby", "~> 1.3.0", :require => "sqlite3"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -47,3 +48,7 @@ gem 'rails_12factor', group: :production
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem "paperclip", "3.4.2"
+
+gem "rubyzip"

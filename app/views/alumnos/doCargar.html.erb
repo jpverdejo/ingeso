@@ -1,2 +1,27 @@
-<h1>CSV cargado</h1>
+<h1>Cargar csv de alumnos</h1>
 
+<% if @valid_ruts.count > 0 %>
+	<div class="alert alert-success">
+		<% if @valid_ruts.count == 1 %>
+			Se cargó correctamente 1 RUT<% if @updated_ruts.count > 0 %> (1 actualizado)<% end %>.
+		<% else %>
+			Se cargaron correctamente <%= @valid_ruts.count %> RUTs<% if @updated_ruts.count > 0 %> (<%=@updated_ruts.count%> actualizados)<% end %>.
+		<% end %>
+	</div>
+<% end %>
+
+<% if @invalid_ruts.count > 0 %>
+	<div class="alert alert-warning">
+		<% if @invalid_ruts.count == 1 %>
+			El siguiente RUT es inválido y no fue cargado.
+		<% else %>
+			Los siguientes <%= @invalid_ruts.count %> RUTs son inválidos y no fueron cargados.
+		<% end %>
+
+		<ul class="list-group">
+			<% @invalid_ruts.each do |rut| %>
+				<li class="list-group-item"><%= rut %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

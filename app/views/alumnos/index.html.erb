@@ -20,8 +20,9 @@
 				<td><%= "#{alumno.ingreso_ano}-#{alumno.ingreso_semestre}" %></td>
 				<td><%= alumno.grupo %></td>
 				<td><%= alumno.seccion %></td>
-				<td><%= alumno.foto ? "Si" : "No" %></td>
-				<td><a href="#">Edit</a></td>
+				<td><%= alumno.foto.exists? ? "Si" : "No" %></td>
+				<!-- <td><%= image_tag alumno.foto.url(:thumb) %></td> -->
+				<td><%= link_to "Editar", controller: "alumnos", action: "editar", id: alumno %></td>
 			</tr>
 		<% end %>
 	</tbody>

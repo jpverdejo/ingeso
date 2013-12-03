@@ -1,11 +1,17 @@
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: df6rhtc3iacv43
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
-  username: bvpjpkhykxjmbk
-  password: nXYTMQEvu6lU_e9NYArq8YondL
-  host: ec2-23-21-94-137.compute-1.amazonaws.com
+  timeout: 5000
+
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: df6rhtc3iacv43
+#   pool: 5
+#   username: bvpjpkhykxjmbk
+#   password: nXYTMQEvu6lU_e9NYArq8YondL
+#   host: ec2-23-21-94-137.compute-1.amazonaws.com
 
 test:
   adapter: postgresql

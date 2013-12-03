@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131128050142) do
+ActiveRecord::Schema.define(version: 20131130234142) do
 
   create_table "alumnos", force: true do |t|
     t.string   "rut"
@@ -21,9 +21,12 @@ ActiveRecord::Schema.define(version: 20131128050142) do
     t.integer  "ingreso_semestre"
     t.string   "grupo"
     t.string   "seccion"
-    t.boolean  "foto"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
   end
 
 end

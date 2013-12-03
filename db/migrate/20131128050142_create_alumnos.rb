@@ -8,7 +8,6 @@ class CreateAlumnos < ActiveRecord::Migration
       t.integer :ingreso_semestre
       t.string :grupo
       t.string :seccion
-      t.boolean :foto
 
       t.timestamps
     end
