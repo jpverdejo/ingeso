@@ -1,0 +1,6 @@
+<h1>Cargar fotos de alumnos</h1>
+
+<%= form_tag("/alumnos/cargarFotos", method: "post", multipart: true) do %>
+  <%= file_field_tag 'zip' %>
+  <%= submit_tag("Cargar") %>
+<% end %>

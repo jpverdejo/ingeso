@@ -1,0 +1,37 @@
+<h1>Agregar alumno</h1>
+
+<%= form_for :alumno do |f| %>
+  <div class="form-group">
+    <%= f.label :rut %>
+    <%= f.text_field :rut %>
+  </div>
+  <div class="form-group">
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="form-group">
+    <%= f.label :carrera_id %>
+    <%= f.text_field :carrera_id %>
+  </div>
+  <div class="form-group">
+    <%= f.label :ingreso_ano %>
+    <%= f.text_field :ingreso_ano %>
+  </div>
+  <div class="form-group">
+    <%= f.label :ingreso_semestre %>
+    <%= f.text_field :ingreso_semestre %>
+  </div>
+  <div class="form-group">
+    <%= f.label :grupo %>
+    <%= f.text_field :grupo %>
+  </div>
+  <div class="form-group">
+    <%= f.label :seccion %>
+    <%= f.text_field :seccion %>
+  </div>
+  <div class="form-group">
+    <%= f.label :foto %>
+    <%= f.file_field :foto %>
+  </div>
+  <%= f.submit %>
+<% end %>
