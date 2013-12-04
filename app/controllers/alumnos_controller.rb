@@ -3,6 +3,7 @@ require 'zip'
 
 class AlumnosController < ApplicationController
   before_filter { |controller| 
+    return
     if user_signed_in?
       if controller.action_name != 'revisar' and current_user.admin?
         return true
@@ -16,7 +17,7 @@ class AlumnosController < ApplicationController
       end
     end
 
-    redirect_to controller: "sessions", action: "sign_in", error: "No tiene permisos suficientes" 
+    redirect_to new_user_session_path, error: "No tiene permisos suficientes" 
     return
   }
 
