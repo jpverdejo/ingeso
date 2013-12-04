@@ -15,5 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
+//= require jquery.simple-dtpicker.js
+
 // Include all twitter's javascripts
 //= require twitter/bootstrap

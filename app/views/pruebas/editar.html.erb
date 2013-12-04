@@ -1,0 +1,24 @@
+<h1>Editar prueba</h1>
+
+<%= form_for :prueba do |f| %>
+  <div class="form-group">
+    <%= f.label :titulo %>
+    <%= f.text_field :titulo %>
+  </div>
+  <div class="form-group">
+    <%= f.label :fecha %>
+    <%= f.datetime_field :fecha, :value => @prueba.fecha.to_time.utc.strftime('%d/%m/%Y %H:%M')  %>
+  </div>
+
+  <script type="text/javascript">
+    $(function(){
+      $('#prueba_fecha').appendDtpicker({
+        "locale": "es",
+        "minuteInterval": 10,
+        "futureOnly": true,
+        "closeOnSelected": true
+      });
+    });
+  </script>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,19 @@
+<h2>Editar usuario</h2>
+
+<%= form_for :user do |f| %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <% default_value = @user.admin ? 1 : 0 %>
+  <div><%= f.label "Admin?" %><br />
+  <%= select("user", "admin", options_for_select([['No', 0], ['Si', 1]], default_value)) %></div>
+
+  <div><%= f.submit "Sign up" %></div>
+<% end %>

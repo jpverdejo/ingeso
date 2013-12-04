@@ -2,8 +2,30 @@ require 'csv'
 require 'zip'
 
 class AlumnosController < ApplicationController
+  before_filter { |controller| 
+    if user_signed_in?
+      if controller.action_name != 'revisar' and current_user.admin?
+        return true
+      else
+        if controller.action_name == 'revisar'
+          return true
+        else
+          redirect_to action: "revisar", error: "No tiene permisos suficientes" 
+          return
+        end
+      end
+    end
+
+    redirect_to controller: "sessions", action: "sign_in", error: "No tiene permisos suficientes" 
+    return
+  }
+
   def index
     @alumnos = Alumno.all
+  end
+
+  def revisar
+
   end
 
   def agregar
@@ -19,17 +41,22 @@ class AlumnosController < ApplicationController
       end
     end
 
-    @alumno = Alumno.new(alumno_params)
-
-    rut = self.get_rut(@alumno.rut)
-    if rut
-      @alumno.rut = rut
-    else
+    rut = self.get_rut(params[:alumno][:rut])
+    if not rut
       redirect_to action: "agregar", error: "RUT incorrecto" 
       return
     end
 
+    @alumno = Alumno.find_by_rut(rut)
+
+    if @alumno
+      @alumno.update_attributes(alumno_params)
+    else
+      @alumno = Alumno.new(alumno_params)
+    end
+    
     @alumno.save!
+
     redirect_to action: "index", notice: "Alumno agregado correctamente"
   end
 

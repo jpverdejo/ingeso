@@ -52,3 +52,5 @@ gem 'rails_12factor', group: :production
 gem "paperclip", "3.4.2"
 
 gem "rubyzip"
+
+gem 'devise'

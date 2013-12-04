@@ -3,6 +3,7 @@
   <head>
    <title>Ingeso</title>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
@@ -32,8 +33,26 @@
               </ul>
             </li>
             <li><a href="/pruebas">Pruebas</a></li>
-            <li><a href="/salas">Salas</a></li>
+            <li><a href="/users">Usuarios</a></li>
           </ul>
+          <div class="navbar-right">
+            <% if not user_signed_in? %>
+              <form class="navbar-form">
+                <div class="form-group">
+                  <input type="text" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
+            <% else %>
+              <ul class="nav navbar-nav">
+                <li><%= link_to "Salir", destroy_user_session_path, :method => :delete %></li>
+              </ul>
+            <% end> %>
+          </div>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
