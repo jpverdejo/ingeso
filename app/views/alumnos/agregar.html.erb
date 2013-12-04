@@ -1,37 +1,52 @@
 <h1>Agregar alumno</h1>
 
 <%= form_for :alumno do |f| %>
-  <div class="form-group">
-    <%= f.label :rut %>
-    <%= f.text_field :rut %>
+  <div class="form-group col-sm-6">
+    <%= f.label :rut  %>
+    <%= f.text_field :rut, class: 'form-control required rut'%>
   </div>
-  <div class="form-group">
+  <div class="form-group col-sm-6">
     <%= f.label :nombre %>
-    <%= f.text_field :nombre %>
+    <%= f.text_field :nombre, class: 'form-control required' %>
   </div>
-  <div class="form-group">
+  <div class="form-group col-sm-6">
     <%= f.label :carrera_id %>
-    <%= f.text_field :carrera_id %>
+    <%= f.text_field :carrera_id, class: 'form-control' %>
   </div>
-  <div class="form-group">
+  <div class="form-group col-sm-6">
     <%= f.label :ingreso_ano %>
-    <%= f.text_field :ingreso_ano %>
+    <%= f.text_field :ingreso_ano, class: 'form-control' %>
   </div>
-  <div class="form-group">
+  <div class="form-group col-sm-6">
     <%= f.label :ingreso_semestre %>
-    <%= f.text_field :ingreso_semestre %>
+    <%= f.text_field :ingreso_semestre, class: 'form-control' %>
   </div>
-  <div class="form-group">
+  <div class="form-group col-sm-6">
     <%= f.label :grupo %>
-    <%= f.text_field :grupo %>
+    <%= f.text_field :grupo, class: 'form-control' %>
   </div>
-  <div class="form-group">
+  <div class="form-group col-sm-6">
     <%= f.label :seccion %>
-    <%= f.text_field :seccion %>
+    <%= f.text_field :seccion, class: 'form-control' %>
   </div>
-  <div class="form-group">
+  <div class="form-group col-sm-6">
     <%= f.label :foto %>
-    <%= f.file_field :foto %>
+    <%= f.file_field :foto, class: 'form-control' %>
   </div>
-  <%= f.submit %>
+  <div class="form-group col-sm-12">
+    <%= f.submit 'Agregar alumno', :class => 'btn btn-success pull-right btn-lg' %>
+  </div>
 <% end %>
+
+<script>
+
+$.validator.addMethod("rut", function(value, element) {
+  return this.optional(element) || $.Rut.validar(value);
+}, "Este campo debe ser un rut valido.");
+  
+  $('.rut').keyup(function(){
+    //$(this).val($.Rut.formatear($(this).val())); 
+
+  })
+  $('form').validate();
+</script>

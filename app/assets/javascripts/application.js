@@ -16,6 +16,8 @@
 //= require_tree .
 
 //= require jquery.simple-dtpicker.js
+//= require jquery.validate.js
+//= require jquery.Rut.min.js
 
 // Include all twitter's javascripts
 //= require twitter/bootstrap

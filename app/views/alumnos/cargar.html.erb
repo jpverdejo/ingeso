@@ -1,6 +1,15 @@
 <h1>Cargar csv de alumnos</h1>
 
-<%= form_tag("/alumnos/cargar", method: "post", multipart: true) do %>
-  <%= file_field_tag 'csv' %>
-  <%= submit_tag("Cargar") %>
+<%= form_tag("/alumnos/cargar", method: "post", multipart: true, class: "form-group col-sm-6") do %>
+  <div class="form-group col-sm-12">
+  	<%= file_field_tag 'csv', class: 'form-control required' %>
+  </div>
+  <div class="form-group col-sm-12">
+  	<%= submit_tag "Cargar", class: 'btn btn-success btn-lg' %>
+  </div>
+
 <% end %>
+
+<script>
+  $('form').validate();
+</script>
