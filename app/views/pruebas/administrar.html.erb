@@ -25,7 +25,7 @@
                 <div class="col-sm-10">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= sala.id %>" class="collapsed"><%= sala.nombre %></a>
                   | 
-                  Cupos disponibles: <%= sala.alumnos.count %>/<%= sala.capacidad %>
+                  Cupos disponibles: <%= (sala.capacidad - sala.alumnos.count) %>/<%= sala.capacidad %>
                 </div>
                 <div class="col-sm-2">
                   <a class="show collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= sala.id %>">Mostrar alumnos <span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -99,7 +99,7 @@
               <% @prueba.salas.each do |sala| %>
                 <% if sala.capacidad > sala.alumnos.count %>
                   <% salas += 1 %>
-                  <option value="<%= sala.id %>"><%=sala.nombre%> (<%=sala.alumnos.count%>/<%=sala.capacidad%>)</option>
+                  <option value="<%= sala.id %>"><%=sala.nombre%> (<%=(sala.capacidad - sala.alumnos.count)%>/<%=sala.capacidad%>)</option>
                 <% end %>
               <% end %>
             </select>
