@@ -28,3 +28,10 @@ set :deploy_via, :export
 default_run_options[:pty] = true  # Forgo errors when deploying from windows
 
 after "deploy", "deploy:migrate"
+
+namespace :deploy do
+  desc "Restarting mod_rails with restart.txt"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+end
