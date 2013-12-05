@@ -29,5 +29,5 @@ development:
   database: rails
   pool: 5
   username: rails
-  password: meIs8xokuJ
+  password: meIs8xokuJca
   socket: /var/run/mysqld/mysqld.sock
