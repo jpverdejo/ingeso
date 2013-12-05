@@ -45,7 +45,7 @@ gem 'rails_12factor', :group => :production
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~> 2.15.5', :group => :development
+gem 'capistrano', '2.15.5', :group => :development
 gem 'rvm-capistrano', :group => :development
 
 # Use debugger
