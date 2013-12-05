@@ -4,6 +4,7 @@ require 'bundler/capistrano'
 set :application, "Ingeso"
 
 set :user, 'deploy'
+set :scm_passphrase, 'depdep'
 set :domain, 'deploy@162.243.251.125'
 set :applicationdir, "/home/rails"
  
