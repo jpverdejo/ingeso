@@ -4,30 +4,14 @@ development:
   pool: 5
   timeout: 5000
 
-# development:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: df6rhtc3iacv43
-#   pool: 5
-#   username: bvpjpkhykxjmbk
-#   password: nXYTMQEvu6lU_e9NYArq8YondL
-#   host: ec2-23-21-94-137.compute-1.amazonaws.com
-
 test:
-  adapter: postgresql
-  encoding: unicode
-  database: df6rhtc3iacv43
+  adapter: sqlite3
+  database: db/test.sqlite3
   pool: 5
-  username: bvpjpkhykxjmbk
-  password: nXYTMQEvu6lU_e9NYArq8YondL
-  host: ec2-23-21-94-137.compute-1.amazonaws.com
+  timeout: 5000
 
-development:
-  adapter: mysql2 
-  encoding: utf8
-  reconnect: false
-  database: rails
+production:
+  adapter: sqlite3
+  database: db/production.sqlite3
   pool: 5
-  username: rails
-  password: meIs8xokuJca
-  socket: /var/run/mysqld/mysqld.sock
+  timeout: 5000

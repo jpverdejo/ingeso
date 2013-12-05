@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter { |controller| 
+  return
     if user_signed_in?
       if current_user.admin?
         return true
