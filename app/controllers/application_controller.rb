@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   before_filter { |controller| 
 
   	if params[:error]
-  		flash[:error] = params[:error]
+  		flash.now[:error] = params[:error]
   	end
   	if params[:notice]
-  		flash[:notice] = params[:notice]
+  		flash.now[:notice] = params[:notice]
   	end
   }
 

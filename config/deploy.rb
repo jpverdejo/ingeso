@@ -4,6 +4,7 @@ require 'bundler/capistrano'
 set :application, "Ingeso"
 
 set :user, 'deploy'
+set :scm_passphrase, 'depdep'
 set :domain, 'deploy@162.243.251.125'
 set :applicationdir, "/home/rails"
  
@@ -25,3 +26,12 @@ set :deploy_via, :export
  
 # additional settings
 default_run_options[:pty] = true  # Forgo errors when deploying from windows
+
+after "deploy", "deploy:migrate"
+
+namespace :deploy do
+  desc "Restarting mod_rails with restart.txt"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+end

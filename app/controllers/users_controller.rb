@@ -23,8 +23,13 @@ class UsersController < ApplicationController
   end
 
   def doAgregar
-  	@user = User.new user_params
-  	@user.save!
+    begin
+    	@user = User.new user_params
+    	@user.save!
+    rescue ActiveRecord::RecordInvalid => e
+      redirect_to action: "index", error: "El e-mail ya existe en la base de datos"
+      return
+    end
 
     redirect_to action: "index", notice: "Usuario agregado correctamente"
   end
