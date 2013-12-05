@@ -1,0 +1,32 @@
+<h2 class="text-center">Listado de alumnos - <%= @prueba.titulo %></h2>
+<h4>
+  <table>
+    <tr>
+      <td>Fecha:</td> <td><%= @prueba.fecha.to_time.utc.strftime('%d/%m/%Y') %></td>
+    </tr>
+    <tr>
+      <td>Hora:</td> <td><%= @prueba.fecha.to_time.utc.strftime('%H:%M') %></td>
+    </tr>
+  </table>
+</h4>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>RUT</th>
+      <th>Grupo</th>
+      <th>Sección</th>
+      <th>Sala</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inscripciones.each do |inscripcion| %>
+      <tr>
+        <td><%=inscripcion.alumno.rut %></td>
+        <td><%=inscripcion.alumno.grupo %></td>
+        <td><%=inscripcion.alumno.seccion %></td>
+        <td><%=inscripcion.sala.nombre %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

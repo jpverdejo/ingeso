@@ -41,6 +41,17 @@ Ingeso::Application.routes.draw do
   get "pruebas/:id/editar", to: "pruebas#editar"
   post "pruebas/:id/editar", to: "pruebas#doEditar"
 
+  delete "pruebas/:id/eliminar", to: "pruebas#eliminar", as: "delete_prueba"
+
+  get "pruebas/:id/administrar", to: "pruebas#administrar", as: "administrar_prueba"
+  post "pruebas/:id/sala", to: "pruebas#agregarSala", as: "agregar_sala"
+  delete "pruebas/:prueba/alumno/:alumno", to: "pruebas#desinscribirAlumno", as: "desinscribir_alumno"
+
+  post "pruebas/:id/inscribir", to: "pruebas#inscribirAlumnos", as: "inscribir_alumnos"
+
+  get "pruebas/:id/imprimirListado", to: "pruebas#imprimirListado", as: "imprimir_listado"
+  get "pruebas/:id/imprimirListadoFirmas", to: "pruebas#imprimirListadoFirmas", as: "imprimir_listado_firmas"
+
   root "alumnos#index"
 
 

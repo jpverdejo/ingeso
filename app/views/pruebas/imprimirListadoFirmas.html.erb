@@ -1,0 +1,49 @@
+<style type="text/css">.pagebreak { page-break-before: always; }</style>
+<% i = 0 %>
+<% @prueba.salas.each do |sala| %>
+  <% i+= 1 %>
+  <%= i > 1 ? raw('<div class="pagebreak"></div>') : '' %>
+
+  <h2 class="text-center">Listado de alumnos - <%= @prueba.titulo %></h2>
+  <h4>
+    <table>
+      <tr>
+        <td>Fecha:</td> <td><%= @prueba.fecha.to_time.utc.strftime('%d/%m/%Y') %></td>
+      </tr>
+      <tr>
+        <td>Hora:</td> <td><%= @prueba.fecha.to_time.utc.strftime('%H:%M') %></td>
+      </tr>
+      <tr>
+        <td>Sala:</td> <td><%= sala.nombre %></td>
+      </tr>
+    </table>
+    <!--Hora: <%= @prueba.fecha.to_time.utc.strftime('%H:%M') %><br />
+    Sala: <%= sala.nombre %>-->
+  </h4>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>RUT</th>
+        <th>Nombre</th>
+        <th>Grupo</th>
+        <th>Sección</th>
+        <th class="col-sm-2">Entrada</th>
+        <th class="col-sm-2">Salida</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% alumnos = sala.alumnos.sort { |a,b| a.rut <=> b.rut } %>
+      <% alumnos.each do |alumno| %>
+        <tr>
+          <td><%=alumno.rut %></td>
+          <td><%=alumno.nombre %></td>
+          <td><%=alumno.grupo %></td>
+          <td><%=alumno.seccion %></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -18,6 +18,10 @@
 //= require jquery.simple-dtpicker.js
 //= require jquery.validate.js
 //= require jquery.Rut.min.js
+//= require date.js
+//= require jquery.columnfilter.js
+//= require jquery.tablesorter.min.js
+//= require picnet.table.filter.min.js
 
 // Include all twitter's javascripts
 //= require twitter/bootstrap

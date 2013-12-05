@@ -1,4 +1,19 @@
 class UsersController < ApplicationController
+
+  before_filter { |controller| 
+    if user_signed_in?
+      if current_user.admin?
+        return true
+      else
+        redirect_to controller: "alumnos", action: "revisar", error: "No tiene permisos suficientes"
+        return
+      end
+    end
+
+    redirect_to new_user_session_path, error: "No tiene permisos suficientes" 
+    return
+  }
+
   def index
   	@users = User.all
   end
@@ -33,13 +48,17 @@ class UsersController < ApplicationController
   end
 
   def eliminar
-  	if params[:id] != current_user.id
+  	if params[:id].to_i != current_user.id.to_i
   		User.find_by_id(params[:id]).delete
   		redirect_to action: "index", notice: "Usuario eliminado correctamente"
   		return
   	end
   	
   	redirect_to action: "index", error: "No puede eliminarse a si mismo"
+  end
+
+  def new
+    logger.debug "asdfas"
   end
 
   private

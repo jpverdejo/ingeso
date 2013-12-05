@@ -1,24 +1,33 @@
 <h1>Editar prueba</h1>
 
 <%= form_for :prueba do |f| %>
-  <div class="form-group">
-    <%= f.label :titulo %>
-    <%= f.text_field :titulo %>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <%= f.label :titulo %>
+      <%= f.text_field :titulo, class: 'form-control required' %>
+    </div>
+    <div class="form-group col-sm-6">
+      <%= f.label :fecha %>
+      <%= f.datetime_field :fecha, :value => @prueba.fecha.to_time.utc.strftime('%d/%m/%Y %H:%M'), class: 'form-control required chileanDateTime'  %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :fecha %>
-    <%= f.datetime_field :fecha, :value => @prueba.fecha.to_time.utc.strftime('%d/%m/%Y %H:%M')  %>
+  <div class="row">
+    <div class="form-group col-sm-12">
+      <%= f.submit "Editar",:class => 'btn btn-success pull-right btn-lg' %>
+    </div>
   </div>
-
-  <script type="text/javascript">
-    $(function(){
-      $('#prueba_fecha').appendDtpicker({
-        "locale": "es",
-        "minuteInterval": 10,
-        "futureOnly": true,
-        "closeOnSelected": true
-      });
-    });
-  </script>
-  <%= f.submit %>
 <% end %>
+
+<script type="text/javascript">
+  jQuery.validator.addMethod("chileanDateTime", function(value, element) { 
+    return Date.parseExact(value, "dd/MM/yyyy HH:mm");
+  }, "Este campo debe ser una fecha válida.");
+
+  $("form").validate();
+  $('#prueba_fecha').appendDtpicker({
+    "locale": "es",
+    "minuteInterval": 10,
+    "futureOnly": true,
+    "closeOnSelected": true
+  });
+</script>

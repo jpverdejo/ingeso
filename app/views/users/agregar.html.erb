@@ -1,59 +1,61 @@
 <h2>Agregar usuario</h2>
 
 <%= form_for :user do |f| %>
-  <div class="form-group col-sm-6">
-  	<%= f.label :email %>
-  	<%= f.email_field :email, :autofocus => true, class: 'form-control' %>
-  </div>
-  <div class="form-group col-sm-6">
- 	<%= f.label :password %>
- 	<%= f.password_field :password, class: 'form-control' %>
-  </div>
-
-  <div class="form-group col-sm-6">
-    <%= f.label :password_confirmation %>
-  	<%= f.password_field :password_confirmation, class: 'form-control' %>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <%= f.label :email %>
+      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+    </div>
+    <div class="form-group col-sm-6">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+    </div>
   </div>
 
-
-  <div class="form-group col-sm-6"> 
-	<%= f.label "Admin?" %>
-  	<%= select("user", "admin", options_for_select([['No', 0], ['Si', 1]], 0), {}, :class => "form-control") %>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+    <div class="form-group col-sm-6"> 
+    <%= f.label "Admin?" %>
+      <%= select("user", "admin", options_for_select([['No', 0], ['Si', 1]], 0), {}, :class => "form-control") %>
+    </div>
   </div>
 
-
-  <div class="form-group col-sm-12">
-  	<%= f.submit "Sign up",:class => 'btn btn-success pull-right btn-lg' %>
+  <div class="row">
+    <div class="form-group col-sm-12">
+      <%= f.submit "Agregar",:class => 'btn btn-success pull-right btn-lg' %>
+    </div>
   </div>
-
 <% end %>
 
 <script>
   $('form').validate({
-		rules: {
-			'user[email]': "required email",
-			'user[password]': {
-				required: true,
-				minlength: 8
-			},			
-			'user[password_confirmation]': {
-				required: true,
-				minlength: 8,
-				equalTo: "#user_password"
-			}
+    rules: {
+      'user[email]': "required email",
+      'user[password]': {
+        required: true,
+        minlength: 8
+      },      
+      'user[password_confirmation]': {
+        required: true,
+        minlength: 8,
+        equalTo: "#user_password"
+      }
 
-		},
-		messages: {
-			'user[email]': "Debes ingresar un correo valido",
-			'user[password]': {
-				required: "Debes agregar una contraseña",
-				minlength: "Debe tener al menos 8 caracteres"
-			},			
-			'user[password_confirmation]': {
-				required: "Debes agregar una contraseña",
-				minlength: "Debe tener al menos 8 caracteres",
-				equalTo: "Las contraseñas no coinciden"
-			}
-		}
-	});
+    },
+    messages: {
+      'user[email]': "Debes ingresar un correo valido",
+      'user[password]': {
+        required: "Debes agregar una contraseña",
+        minlength: "Debe tener al menos 8 caracteres"
+      },      
+      'user[password_confirmation]': {
+        required: "Debes agregar una contraseña",
+        minlength: "Debe tener al menos 8 caracteres",
+        equalTo: "Las contraseñas no coinciden"
+      }
+    }
+  });
 </script>

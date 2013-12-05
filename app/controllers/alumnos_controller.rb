@@ -3,7 +3,6 @@ require 'zip'
 
 class AlumnosController < ApplicationController
   before_filter { |controller| 
-    return
     if user_signed_in?
       if controller.action_name != 'revisar' and current_user.admin?
         return true

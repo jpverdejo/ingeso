@@ -279,14 +279,14 @@ $.extend($.validator, {
 	},
 
 	messages: {
-		required: "This field is required.",
+		required: "Este campo es requerido.",
 		remote: "Please fix this field.",
-		email: "Please enter a valid email address.",
+		email: "Este campo debe ser un e-mail válido.",
 		url: "Please enter a valid URL.",
 		date: "Please enter a valid date.",
 		dateISO: "Please enter a valid date (ISO).",
-		number: "Please enter a valid number.",
-		digits: "Please enter only digits.",
+		number: "Este campo debe ser un número válido.",
+		digits: "Este campo debe contener solo dígitos.",
 		creditcard: "Please enter a valid credit card number.",
 		equalTo: "Please enter the same value again.",
 		maxlength: $.validator.format("Please enter no more than {0} characters."),
