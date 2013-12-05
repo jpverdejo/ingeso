@@ -22,12 +22,12 @@ test:
   password: nXYTMQEvu6lU_e9NYArq8YondL
   host: ec2-23-21-94-137.compute-1.amazonaws.com
 
-development:
+production:
   adapter: mysql2 
   encoding: utf8
   reconnect: false
   database: rails
   pool: 5
-  username: rails
-  password: meIs8xokuJca
+  username: root
+  password: depdep
   socket: /var/run/mysqld/mysqld.sock

@@ -5,7 +5,7 @@ gem 'rails', '4.0.1'
 
 #gem "pg"
 gem "sqlite3-ruby", "~> 1.3.0", :require => "sqlite3"
-gem "mysql2"
+gem "mysql2", :group => :production
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

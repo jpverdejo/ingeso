@@ -25,3 +25,5 @@ set :deploy_via, :export
  
 # additional settings
 default_run_options[:pty] = true  # Forgo errors when deploying from windows
+
+after "deploy", "deploy:migrate"
