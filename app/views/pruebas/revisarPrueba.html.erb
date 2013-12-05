@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-lg-6">
+    <form action="<%= revisar_prueba_path %>" method="post">
+      <div class="input-group">
+        <input type="text" class="form-control" name="rut" <% if @rut %>value="<%=@rut%>"<% end %> placeholder="RUT">
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="button">Buscar</button>
+        </span>
+      </div><!-- /input-group -->
+      <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+      <%= tag(:input, :type => "hidden", :name => "prueba", :value => @prueba) %>
+    </form>
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+
+<div class="row">
+  <% if @message %>
+    <br />
+    <div class="alert alert-warning col-lg-6"><%= @message %></div>
+  <% else %>
+    <% if @inscripcion %>
+      <% alumno = @inscripcion.alumno %>
+      <div class="col-lg-12">
+        <h2><%=alumno.nombre%></h2>
+      </div>
+      <div class="col-lg-3">
+        <%= image_tag alumno.foto.url(:thumb), :class => "img-thumbnail col-lg-12" %>
+      </div>
+      <div class="col-lg-9">
+        <dl class=" col-lg-6">
+            <dt class="text-muted"><h4><span class="glyphicon glyphicon-user"></span> Sala Asignada</h4></dt>
+            <dd><%= @inscripcion.sala.nombre %><br/><br/></dd>
+            <dt class="text-muted"><h4><span class="glyphicon glyphicon-folder-open"></span> Carrera</h4></dt>
+            <dd><%= alumno.nombre %><br/><br/></dd>
+            <dt class="text-muted"><h4><span class="glyphicon glyphicon-calendar"></span> Ingreso</h4></dt>
+            <dd><%= "#{alumno.ingreso_ano}-#{alumno.ingreso_semestre}" %><br/><br/></dd>
+        </dl>
+        <dl class=" col-lg-6">
+            <dt class="text-muted"><h4><span class="glyphicon glyphicon-cloud"></span> Grupo</h4></dt>
+            <dd><%= alumno.nombre %><br/><br/></dd>
+            <dt class="text-muted"><h4><span class="glyphicon glyphicon-folder-close"></span> Seccion</h4></dt>
+            <dd><%= alumno.seccion %><br/><br/></dd>
+          </dl>
+      </div>
+    <% else %>
+      <br />
+      <div class="alert alert-warning col-lg-6">No se encontró el alumno en esta prueba.</div>
+    <% end %>
+  <% end %>
+</div>

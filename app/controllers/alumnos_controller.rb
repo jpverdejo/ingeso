@@ -2,32 +2,11 @@ require 'csv'
 require 'zip'
 
 class AlumnosController < ApplicationController
-  before_filter { |controller| 
-    if user_signed_in?
-      if controller.action_name != 'revisar' and current_user.admin?
-        return true
-      else
-        if controller.action_name == 'revisar'
-          return true
-        else
-          redirect_to action: "revisar", error: "No tiene permisos suficientes" 
-          return
-        end
-      end
-    end
-
-    redirect_to new_user_session_path, error: "No tiene permisos suficientes" 
-    return
-  }
-
+  
   def index
     @alumnos = Alumno.all
   end
-
-  def revisar
-
-  end
-
+  
   def agregar
     @alumno = Alumno.new
   end
@@ -190,42 +169,6 @@ class AlumnosController < ApplicationController
       redirect_to action: "index", error: "Hubo un problema al cargar el ZIP"
       return
     end
-  end
-
-  #Method got from: https://github.com/Numerico/rut-chileno/blob/master/lib/rut_chileno.rb
-  def get_digito(rut)
-    dvr='0'
-    suma=0
-    mul=2
-    rut.reverse.split("").each do |c|
-      suma=suma+c.to_i*mul
-      if mul==7
-        mul=2
-      else
-        mul+=1
-      end
-    end
-    res=suma%11
-    if res==1
-      return 'k'
-    elsif res==0
-      return '0'
-    else
-      return 11-res
-    end
-  end
-
-  def get_rut(rut)
-    rut = rut.tr('^A-Za-z0-9', '').upcase
-
-    dv = rut[-1, 1]
-    rut = rut[0, (rut.length-1)]
-
-    return nil if rut != rut.tr('^0-9', '')
-    return nil if dv != dv.tr('^0-9K', '')
-    return nil if dv.to_s.upcase != self.get_digito(rut).to_s.upcase
-
-    return "#{rut}-#{dv}"
   end
 
   # Method got from: http://stackoverflow.com/questions/4600679/detect-mime-type-of-uploaded-file-in-ruby

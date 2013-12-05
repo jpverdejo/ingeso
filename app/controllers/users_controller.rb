@@ -1,19 +1,5 @@
 class UsersController < ApplicationController
 
-  before_filter { |controller| 
-    if user_signed_in?
-      if current_user.admin?
-        return true
-      else
-        redirect_to controller: "alumnos", action: "revisar", error: "No tiene permisos suficientes"
-        return
-      end
-    end
-
-    redirect_to new_user_session_path, error: "No tiene permisos suficientes" 
-    return
-  }
-
   def index
   	@users = User.all
   end
@@ -40,14 +26,13 @@ class UsersController < ApplicationController
 
   def doEditar
   	@user = User.find_by_id params[:id]
-
-  	if params[:user][:password] != ''
-  		@user.update_attributes user_params
-  	else 
-  		@user.update_attributes user_params_no_passwd
+    logger.debug @user.id
+    if params[:user][:password] != ''
+  		@user.update_attributes user_params_edit
   	end
-
-  	@user.save!
+    
+    admin = params[:user][:admin]
+    @user.update_attribute(:admin, admin)
 
     redirect_to action: "index", notice: "Usuario editado correctamente"
   end
@@ -63,14 +48,16 @@ class UsersController < ApplicationController
   end
 
   def new
-    logger.debug "asdfas"
   end
 
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :admin)
   end
+  def user_params_edit
+    params.require(:user).permit(:password, :password_confirmation, :admin)
+  end
   def user_params_no_passwd
-    params.require(:user).permit(:email, :admin)
+    params.require(:user).permit(:admin)
   end
 end

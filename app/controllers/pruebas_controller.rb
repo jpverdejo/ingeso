@@ -1,18 +1,4 @@
 class PruebasController < ApplicationController
-
-  before_filter { |controller| 
-    if user_signed_in?
-      if current_user.admin?
-        return true
-      else
-        redirect_to controller: "alumnos", action: "revisar", error: "No tiene permisos suficientes"
-        return
-      end
-    end
-
-    redirect_to new_user_session_path, error: "No tiene permisos suficientes" 
-    return
-  }
   
   def index
     @pruebas = Prueba.all
@@ -116,6 +102,32 @@ class PruebasController < ApplicationController
   def imprimirListadoFirmas
     @prueba = Prueba.find_by_id params[:id]
     render :layout => "listados"
+  end
+
+  def revisar
+    @pruebas = Prueba.all
+  end
+
+  def revisarPrueba
+    begin
+      @prueba = Prueba.find_by_id params[:prueba]
+
+      @prueba = params[:prueba]
+
+      @message = "Ingrese un rut para revisar"
+      if params[:rut]
+        @rut = self.get_rut(params[:rut])
+
+        if @rut
+          @inscripcion = Inscripcion.find_by_prueba_id_and_alumno_id(@prueba, Alumno.find_by_rut(@rut))
+          @message = nil
+        else
+          @message = "RUT invalido"
+        end
+      end
+    rescue
+      @message = "Hubo un error. Por favor intenta nuevamente."
+    end
   end
 
   private

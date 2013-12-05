@@ -1,0 +1,16 @@
+<h2>Revisar prueba</h2>
+
+<form class="form-inline" role="form" id="revisar_prueba" action="<%= revisar_prueba_path %>" method="post">
+  <div class="form-group">
+    <label for="inputEmail3" class="control-label">Revisar alumnos para: </label>
+  </div>
+  <div class="form-group">
+    <select class="form-control" name="prueba">
+      <% @pruebas.each do |prueba| %>
+        <option value="<%= prueba.id %>"><%= prueba.titulo %></option>
+      <% end %>
+    </select>
+  </div>
+  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+  <button type="submit" class="btn btn-primary">Asignar</button>
+</form>
