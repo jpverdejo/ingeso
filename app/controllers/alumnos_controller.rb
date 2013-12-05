@@ -47,6 +47,8 @@ class AlumnosController < ApplicationController
       return
     end
 
+    params[:alumno][:rut] = rut
+
     @alumno = Alumno.find_by_rut(rut)
 
     if @alumno
