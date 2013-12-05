@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <title>Ingeso</title>
+   <title>Control de Asistencia e Identificación - USACH</title>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -18,7 +18,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand">Laboratorio INGESO</a>
+          <a class="navbar-brand">CAI USACH</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -49,10 +49,10 @@
     <div class="container">
 
       <% if flash[:error] %>
-        <div class="alert alert-warning"><%= flash.now[:error] %></div>
+        <div class="alert alert-warning"><%= flash[:error] %></div>
       <% end %>
       <% if flash[:notice] %>
-        <div class="alert alert-info"><%= flash.now[:notice] %></div>
+        <div class="alert alert-info"><%= flash[:notice] %></div>
       <% end %>
 
       <%= yield %>
