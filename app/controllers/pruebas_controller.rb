@@ -40,7 +40,7 @@ class PruebasController < ApplicationController
     prueba.fecha = fechahora
     prueba.save!
 
-    redirect_to action: "index", notice: "Prueba agregada correctamente"
+    redirect_to action: "index", notice: "Prueba editada correctamente"
   end
 
   def eliminar

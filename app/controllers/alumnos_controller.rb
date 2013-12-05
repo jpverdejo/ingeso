@@ -201,18 +201,10 @@ class AlumnosController < ApplicationController
     dv = rut[-1, 1]
     rut = rut[0, (rut.length-1)]
 
-    logger.debug ''
-    logger.debug ''
-    logger.debug ''
-    logger.debug 1
     return nil if rut != rut.tr('^0-9', '')
-    logger.debug 2
-    return nil if dv != dv.tr('^0-9k', '')
-    logger.debug 3 
-    logger.debug rut
-    logger.debug self.get_digito(rut)
-    return nil if dv.to_i != self.get_digito(rut)
-    logger.debug 4
+    return nil if dv != dv.tr('^0-9K', '')
+    return nil if dv.to_s.upcase != self.get_digito(rut).to_s.upcase
+
     return "#{rut}-#{dv}"
   end
 

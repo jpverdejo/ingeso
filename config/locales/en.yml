@@ -20,6 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    errors:
+      messages:
+        taken: "Este %{model} ya sido utilizado"
   devise:
     confirmations:
       confirmed: "Tu cuenta ya ha sido confirmada."
