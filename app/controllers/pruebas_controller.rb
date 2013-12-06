@@ -130,6 +130,18 @@ class PruebasController < ApplicationController
     end
   end
 
+  def marcarPresente
+    begin
+      @inscripcion = Inscripcion.find_by_prueba_id_and_alumno_id(params[:prueba], params[:alumno])
+      @inscripcion.presente = true
+      @inscripcion.save!
+      @message = "Alumno \"#{inscripcion.alumno.nombre}\" marcado como presente correctamente"
+    rescue
+      @message = "Hubo un error. Por favor intenta nuevamente."
+    end
+    render :layout => false
+  end
+
   private
   def prueba_params
     params.require(:prueba).permit(:titulo, :fecha)

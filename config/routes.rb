@@ -52,6 +52,7 @@ Ingeso::Application.routes.draw do
 
   get "pruebas/revisar", :to => "pruebas#revisar", :as => "revisar"
   post "pruebas/revisar", :to => "pruebas#revisarPrueba", :as => "revisar_prueba"
+  post "pruebas/marcarPresente", :to => "pruebas#marcarPresente", :as => "marcar_presente"
 
   root "alumnos#index"
 

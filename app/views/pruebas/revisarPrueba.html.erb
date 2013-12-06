@@ -4,7 +4,7 @@
       <div class="input-group">
         <input type="text" class="form-control" name="rut" <% if @rut %>value="<%=@rut%>"<% end %> placeholder="RUT">
         <span class="input-group-btn">
-          <button class="btn btn-success" type="button">Buscar</button>
+          <button type="submit" class="btn btn-success" type="button">Buscar</button>
         </span>
       </div><!-- /input-group -->
       <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
@@ -27,20 +27,30 @@
         <%= image_tag alumno.foto.url(:medium), :class => "img-thumbnail col-lg-12" %>
       </div>
       <div class="col-lg-9">
-        <dl class=" col-lg-6">
+        <div class="row">
+          <dl class=" col-lg-6">
             <dt class="text-muted"><h4><span class="glyphicon glyphicon-user"></span> Sala Asignada</h4></dt>
             <dd><%= @inscripcion.sala.nombre %><br/><br/></dd>
             <dt class="text-muted"><h4><span class="glyphicon glyphicon-folder-open"></span> Carrera</h4></dt>
             <dd><%= alumno.nombre %><br/><br/></dd>
             <dt class="text-muted"><h4><span class="glyphicon glyphicon-calendar"></span> Ingreso</h4></dt>
             <dd><%= "#{alumno.ingreso_ano}-#{alumno.ingreso_semestre}" %><br/><br/></dd>
-        </dl>
-        <dl class=" col-lg-6">
+          </dl>
+          <dl class=" col-lg-6">
             <dt class="text-muted"><h4><span class="glyphicon glyphicon-cloud"></span> Grupo</h4></dt>
             <dd><%= alumno.nombre %><br/><br/></dd>
             <dt class="text-muted"><h4><span class="glyphicon glyphicon-folder-close"></span> Seccion</h4></dt>
             <dd><%= alumno.seccion %><br/><br/></dd>
           </dl>
+        </div>
+        <div class="row">
+          <form method="post" action="<%= marcar_presente_path %>" id="marcar_presente">
+            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+            <%= tag(:input, :type => "hidden", :name => "prueba", :value => @prueba) %>
+            <%= tag(:input, :type => "hidden", :name => "alumno", :value => alumno.id) %>
+            <button type="submit" class="btn btn-success col-lg-6 btn-lg" <%= @inscripcion.presente ? 'disabled="disabled"' : '' %> type="button"><%= @inscripcion.presente ? 'Presente' : 'Marcar presente' %></button>
+          </form>
+        </div>
       </div>
     <% else %>
       <br />
@@ -48,3 +58,29 @@
     <% end %>
   <% end %>
 </div>
+<div style="display:none;"><img src="/images/loader.gif" /></div>
+
+<script type="text/javascript">
+  $("#marcar_presente").submit(function(e) {
+    e.preventDefault();
+    $("#marcar_presente button").html('<img src="/images/loader.gif" />')
+
+    $.ajax({
+      url: "<%=marcar_presente_path%>",
+      type: "POST",
+      data: $("#marcar_presente").serialize(),
+      success: function(r) {
+        if (r == "true") {
+          $("#marcar_presente button").prop("disabled", "disabled");
+          $("#marcar_presente button").html("Presente")
+        }
+        else {
+          $("#marcar_presente button").html("Marcar presente");
+        }
+      },
+      error: function() {
+        $("#marcar_presente button").html("Marcar presente");
+      }
+    });
+  });
+</script>
